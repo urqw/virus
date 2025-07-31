@@ -1,5 +1,5 @@
 :main
-music=1.mid
+music="1.ogg"
 kill=0
 boss=0
 open=0
@@ -713,7 +713,7 @@ inv- Чернильная лента
 save 59
 style_fontpicture=55.jpg
 style_nonactivetext=Вирус
-music=1.mid
+music="1.ogg"
 goto 55
 end
 
@@ -791,7 +791,7 @@ goto 89
 end
 
 :89
-music=1.mid
+music="1.ogg"
 pln                    Поздравляю !!!
 pln               Вы прошли игру "Вирус"
 pln                  Ваш успех : #%points$%
@@ -885,7 +885,7 @@ end
 inv- Чернильная лента
 save 40
 style_formpicture=55.jpg
-music=anci.mid
+music="1.ogg"
 style_nonactivetext=Вирус
 goto 38
 end
@@ -977,7 +977,7 @@ inv- Чернильная лента
 save 19.1
 instr style_formpicture=55.jpg
 instr style_nonactivetext=Вирус
-music=1.mid
+music="1.ogg"
 goto 16
 end
 
