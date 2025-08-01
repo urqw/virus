@@ -16,9 +16,9 @@ box1=0
 mon=0
 pla=0
 plant=0
-fa=*
-sa=*
-ta=*
+fa="*"
+sa="*"
+ta="*"
 kod1=0
 instr style_nonactivetext=Вирус
 key1=0
@@ -416,21 +416,21 @@ btn 26.4,Ok
 end
 
 :26.1
-if fa=* then fa=1 & goto 26
-if sa=* then sa=1 & goto 26
-if ta=* then ta=1 & goto 26
+if fa="*" then fa=1 & goto 26
+if sa="*" then sa=1 & goto 26
+if ta="*" then ta=1 & goto 26
 end
 
 :26.2
-if fa=* then fa=2 & goto 26
-if sa=* then sa=2 & goto 26
-if ta=* then ta=2 & goto 26
+if fa="*" then fa=2 & goto 26
+if sa="*" then sa=2 & goto 26
+if ta="*" then ta=2 & goto 26
 end
 
 :26.3
-if fa=* then fa=3 & goto 26
-if sa=* then sa=3 & goto 26
-if ta=* then ta=3 & goto 26
+if fa="*" then fa=3 & goto 26
+if sa="*" then sa=3 & goto 26
+if ta="*" then ta=3 & goto 26
 end
 
 :26.4
@@ -438,9 +438,9 @@ if otv=1 and fa=2 and sa=2 and ta=3 then goto 27
 if otv=2 and fa=3 and sa=1 and ta=1 then goto 27
 if otv=3 and fa=2 and sa=3 and ta=1 then goto 27
 pln Пароль не верен
-fa=*
-sa=*
-ta=*
+fa="*"
+sa="*"
+ta="*"
 goto 24
 end
 
@@ -532,7 +532,8 @@ btn 63,Мантикора
 btn 63,Минотавр
 end
 
-:64pln Вопрос : Назовите существо, имеющее тело и голову льва, крылья летучей мыши и хвост скорпиона.
+:64
+pln Вопрос : Назовите существо, имеющее тело и голову льва, крылья летучей мыши и хвост скорпиона.
 btn 63,Грифон
 btn 63,Нага
 btn 63,Медуза Горгона
@@ -584,7 +585,7 @@ goto 70
 end
 
 :70
-kill=0
+kill_boss=0
 boss=0
 pln Вы находитесь в помещении для важных приёмов. Здесь стоит складная лестница. Есть выход в следующее помещение. Также есть дверь в зал с Растением 100, однако что - то подсказывает вам, что лучше туда не соваться.
 btn 72,Осмотреть лестницу
@@ -606,7 +607,7 @@ end
 
 :77
 boss=boss+1
-if boss>9 and kill=0 then pln Ну вот, дождались! Кожа мутанта регенерировалась и тепрь вам предстоит нелёгкая схватка & goto f10
+if boss>9 and kill_boss=0 then pln Ну вот, дождались! Кожа мутанта регенерировалась и тепрь вам предстоит нелёгкая схватка & goto f10
 seca=0
 plant=0
 sector=1
@@ -838,7 +839,7 @@ end
 
 :47
 if zomb5=1 then pln Вы помчались прямо навстречу толпе зомби, где вас сожрали. & goto 8f
-pln На стене висит табличка "<= больница ;=>изолятор".
+pln На стене висит табличка "<= больница ##59$=>изолятор".
 if zomb5=0 then pln Внезапно из правой двери на вас ринулся огромный поток зомби. Вы отбежали к другому концу коридора... Чёрт, дверь закрыта! Придётся отстреливаться! & zomb5=1 & goto 48
 end
 
@@ -1007,8 +1008,8 @@ end
 
 :14
 pln " Выберите дверь, которую следует открыть/закрыть. "
-if seca=0 then btn 14.1,Открыть сектор A
-if seca=1 then btn 14.2,Закрыть сектор A
+if seca=1 then btn 14.1,Открыть сектор A
+if seca=0 then btn 14.2,Закрыть сектор A
 if secb=0 then btn 14.3,Открыть сектор B
 
 if secb=1 then btn 14.4,Закрыть сектор B
@@ -1162,7 +1163,7 @@ if fight=9 and jizn>90 then pln Четыре зомби медленно идут к вам.
 if fight=6 and jizn>49 and jizn<101 then pln К вам тянуться руки двух зомби.
 if fight=6 and jizn<50 then pln Один мертвец бредёт к вам не обращая ни на что внимания.
 if fight=5 then pln К вам движется поток живой мертвечины. Видимо в изоляторе находилось где-то полсотни зомби.
-if fight=3 & not Спецкостюм then spr=spr+1
+if fight=3 and not Спецкостюм then spr=spr+1
 if fight=3 and spr>2 then pln Вы вдохнули и жгучие споры мгновенно попали в ваши лёгкие. Ещё немного и вы умрёте от удушья. & inv- 10,Здоровья
 if fight=1 or fight=9 and jizn>35 and jizn<71 then pln Перед вами два зомби. Они голодны и медленно идут к вам.
 if fight=1 or fight=9 and jizn<36 then pln К вам приближается голодный зомби.
@@ -1252,7 +1253,7 @@ end
 if fight=7 then pln Вы стрельнули в растение, но рана моментально зарослась. & inv- Патронов & goto 1f
 a=rnd*2
 if a>1 or mest2<2 then pln Вы стрельнули в зомби и всадили пулю глубоко в его прогнившее тело. & jizn=jizn-15 & a=2
-if a<=1 & mest2>1 then pln Вы стрельнули в зомби, но промахнулись.
+if a<=1 and mest2>1 then pln Вы стрельнули в зомби, но промахнулись.
 inv- Патронов
 goto 1f
 end
@@ -1291,6 +1292,6 @@ if fight=6 then pln -Пойдём, у нас мало времени .- сказала Сара. Трое мертвецов 
 if fight=7 then pln Вы покончили со всеми растениями - мутантами. & zomb7=1 & goto 51
 if fight=8 then pln Вы убили всех зомби. & zomb8=1 & goto 80
 if fight=9 then pln Два зомби лежат на полу, иногда немного подёргиваясь. & zomb9=1 & goto 37 
-if fight=10 then pln Вы сразили самое страшное исчадие этого кошмара. Поздравляю! Но кошмар ещё не закончен... & kill=1 & goto 77
+if fight=10 then pln Вы сразили самое страшное исчадие этого кошмара. Поздравляю! Но кошмар ещё не закончен... & kill_boss=1 & goto 77
 end
 
